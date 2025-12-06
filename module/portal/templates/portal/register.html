@@ -1,0 +1,42 @@
+{% extends 'portal/base.html' %}
+{% block content %}
+<section class="row justify-content-center px-3">
+    <article class="col-lg-4 col-md-6 col-sm-8 border p-4 bg-white rounded">
+        <h2 class="text-center mb-4">Регистрация</h2>
+        <form method="post">{% csrf_token %}
+            {{ form.non_field_errors }}
+            <article class="form-group mb-3 d-flex flex-column">
+                {{ form.username.label_tag }} {{ form.username }}
+                {% for e in form.username.errors %}<article class="text-danger">{{ e }}</article>{% endfor %}
+            </article>
+            <article class="form-group mb-3 d-flex flex-column">
+                {{ form.full_name.label_tag }} {{ form.full_name }}
+                {% for e in form.full_name.errors %}<article class="text-danger">{{ e }}</article>{% endfor %}
+            </article>
+            <article class="form-group mb-3 d-flex flex-column">
+                {{ form.email.label_tag }} {{ form.email }}
+                {% for e in form.email.errors %}<article class="text-danger">{{ e }}</article>{% endfor %}
+            </article>
+            <article class="form-group mb-3 d-flex flex-column">
+                {{ form.phone.label_tag }} {{ form.phone }}
+                {% for e in form.phone.errors %}<article class="text-danger">{{ e }}</article>{% endfor %}
+            </article>
+            <article class="form-group mb-3 d-flex flex-column">
+                {{ form.password1.label_tag }} {{ form.password1 }}
+                {% for e in form.password1.errors %}<article class="text-danger">{{ e }}</article>{% endfor %}
+            </article>
+            <article class="form-group mb-3 d-flex flex-column">
+                {{ form.password2.label_tag }} {{ form.password2 }}
+                {% for e in form.password2.errors %}<article class="text-danger">{{ e }}</article>{% endfor %}
+            </article>
+            <article class="d-flex justify-content-center">
+                <button class="btn btn-primary mt-2">Создать пользователя</button>
+            </article>
+        </form>
+        <article class="d-flex justify-content-center">
+            <a class="mt-3 text-secondary text-decoration-none text-center" href="{% url 'portal:login' %}">Уже
+                зарегистрированы? Войти</a>
+        </article>
+    </article>
+</section>
+{% endblock %}

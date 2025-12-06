@@ -1,0 +1,24 @@
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+django-admin startproject korochki .
+python3 manage.py startapp portal
+
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py create_admin
+
+python3 manage.py runserver
+
+python3 manage.py graph_models portal -o er.png
+python3 manage.py graph_models -a -o er1.png
+
+
+linux:
+sudo -u postgres createuser -s -P postgres
+sudo -u postgres createdb -O postgres postgres
+
+windows:
+createuser -s -P postgres
+createdb -O postgres postgres

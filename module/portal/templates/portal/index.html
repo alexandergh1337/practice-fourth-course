@@ -1,0 +1,27 @@
+{% extends 'portal/base.html' %}
+{% block page %}
+<article id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+    <article class="carousel-inner">
+        <article class="carousel-item active">
+            <img class="d-block w-100" loading="lazy" src="https://adpo-edu.ru/uplfile/dop_adpo.jpg" alt="Первый слайд">
+        </article>
+        <article class="carousel-item">
+            <img class="d-block w-100" loading="lazy" src="https://dpo.online/wp-content/uploads/2016/03/1-32.jpg" alt="Второй слайд">
+        </article>
+        <article class="carousel-item">
+            <img class="d-block w-100" loading="lazy" src="https://nipkef.ru/upload/medialibrary/b91/j62px49rulbvk1knvsrzeuatumihup31.jpg" alt="Третий слайд">
+        </article>
+        <article class="carousel-item">
+            <img class="d-block w-100" loading="lazy" src="https://media.ssmu.ru/upload/iblock/bc3/x7pb9vqj5orbgsx5ad8vtci0ul9cz5yu.jpg" alt="Четвёртый слайд">
+        </article>
+    </article>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Предыдущая</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Следующая</span>
+    </button>
+</article>
+{% endblock %}

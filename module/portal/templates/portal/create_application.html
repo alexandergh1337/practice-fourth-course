@@ -1,0 +1,25 @@
+{% extends 'portal/base.html' %}
+{% block content %}
+<section class="row justify-content-center px-3">
+    <article class="col-lg-4 col-md-6 col-sm-8 border p-4 bg-white rounded">
+        <h2 class="text-center mb-4">Создать заявку</h2>
+        <form method="post">{% csrf_token %}
+            <article class="form-group mb-3 d-flex flex-column">
+                {{ form.course.label_tag }} {{ form.course }}
+                {% for e in form.course.errors %}<article class="text-danger">{{ e }}</article>{% endfor %}
+            </article>
+            <article class="form-group mb-3 d-flex flex-column">
+                {{ form.start_date.label_tag }} {{ form.start_date }}
+                {% for e in form.start_date.errors %}<article class="text-danger">{{ e }}</article>{% endfor %}
+            </article>
+            <article class="form-group mb-3 d-flex flex-column">
+                {{ form.payment_method.label_tag }} {{ form.payment_method }}
+                {% for e in form.payment_method.errors %}<article class="text-danger">{{ e }}</article>{% endfor %}
+            </article>
+            <article class="d-flex justify-content-center">
+                <button class="btn btn-success mt-2">Отправить</button>
+            </article>
+        </form>
+    </article>
+</section>
+{% endblock %}
