@@ -1,0 +1,20 @@
+python3 -m venv venv
+source venv/bin/activate
+pip install django psycopg2-binary
+
+django-admin startproject korochki .
+python3 manage.py startapp portal
+
+python3 manage.py makemigrations
+python3 manage.py migrate
+
+python3 manage.py runserver
+
+
+linux:
+sudo -u postgres createuser -s -P postgres
+sudo -u postgres createdb -O postgres postgres
+
+windows:
+createuser -s -P postgres
+createdb -O postgres postgres

@@ -1,0 +1,20 @@
+{% extends 'portal/base.html' %} {% block content %}
+<section class="row justify-content-center px-3">
+    <article
+        class="col-lg-4 col-md-6 col-sm-8 border p-4 bg-white rounded shadow-sm"
+    >
+        <h2 class="text-center mb-4">Регистрация</h2>
+        <form method="post">
+            {% csrf_token %} {{ form.as_p }}
+            <button class="btn btn-primary w-100 mt-2">
+                Зарегистрироваться
+            </button>
+        </form>
+        <article class="text-center mt-3">
+            <a href="{% url 'portal:login' %}" class="text-decoration-none"
+                >Уже зарегистрированы? Войти</a
+            >
+        </article>
+    </article>
+</section>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'portal/base.html' %} {% block content %}
+<section class="row justify-content-center px-3">
+    <article class="col-lg-5 col-md-7 border p-4 bg-white rounded shadow-sm">
+        <h2 class="text-center mb-4">Новая заявка</h2>
+        <form method="post">
+            {% csrf_token %} {{ form.as_p }}
+            <button class="btn btn-success w-100 mt-2">Отправить заявку</button>
+        </form>
+    </article>
+</section>
+{% endblock %}
