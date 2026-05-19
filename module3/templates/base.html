@@ -1,0 +1,99 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Я буду кушац</title>
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    </head>
+    <body class="d-flex flex-column min-vh-100 bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-0">
+            <article class="container">
+                <a class="navbar-brand" href="{% url 'home' %}">Я буду кушац</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <article class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}"
+                                >Главная</a
+                            >
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="{% url 'create_booking' %}"
+                                >Забронировать</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'my_bookings' %}"
+                                >Мои брони</a
+                            >
+                        </li>
+                        {% if user.is_staff %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/">Админка</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}"
+                                >Выход</a
+                            >
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}"
+                                >Вход</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}"
+                                >Регистрация</a
+                            >
+                        </li>
+                        {% endif %}
+                    </ul>
+                </article>
+            </article>
+        </nav>
+
+        <main class="">
+            {% if messages %}
+            <article class="container mt-3">
+                {% for message in messages %}
+                <article
+                    class="alert alert-{{ message.tags }} alert-dismissible fade show"
+                >
+                    {{ message }}
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                    ></button>
+                </article>
+                {% endfor %}
+
+        </article>
+        {% endif %}
+        {% block content %}{% endblock %}
+
+        <footer class="mt-auto bg-dark py-5">
+            <article class="container text-center text-white">
+                <h3 class="navbar-brand mb-3 d-block">Я буду кушац</h3>
+                <p class="small">&copy; 2026 Все права защищены</p>
+            </article>
+        </footer>
+
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    </body>
+</html>
