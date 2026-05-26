@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
@@ -9,11 +9,6 @@ from .models import Booking
 
 def home(request):
     return render(request, "booking/home.html")
-
-
-def logout_user(request):
-    logout(request)
-    return redirect("home")
 
 
 def register(request):

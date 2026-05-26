@@ -67,11 +67,11 @@
             </article>
         </nav>
 
-        <main class="">
+        <main class="flex-grow-1">
             {% if messages %}
-            <article class="container mt-3">
+            <div class="container mt-3">
                 {% for message in messages %}
-                <article
+                <div
                     class="alert alert-{{ message.tags }} alert-dismissible fade show"
                 >
                     {{ message }}
@@ -80,12 +80,11 @@
                         class="btn-close"
                         data-bs-dismiss="alert"
                     ></button>
-                </article>
+                </div>
                 {% endfor %}
-
-        </article>
-        {% endif %}
-        {% block content %}{% endblock %}
+            </div>
+            {% endif %} {% block content %}{% endblock %}
+        </main>
 
         <footer class="mt-auto bg-dark py-5">
             <article class="container text-center text-white">
@@ -95,5 +94,27 @@
         </footer>
 
         <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+        <script>
+            document
+                .querySelectorAll('input[name*="phone"]')
+                .forEach((input) => {
+                    input.addEventListener("input", (e) => {
+                        let value = e.target.value.replace(/\D/g, "");
+                        if (value.startsWith("7")) value = value.substring(1);
+
+                        let result = "+7(";
+                        if (value.length > 0) result += value.substring(0, 3);
+                        if (value.length > 3)
+                            result += ")-" + value.substring(3, 6);
+                        if (value.length > 6)
+                            result += "-" + value.substring(6, 8);
+                        if (value.length > 8)
+                            result += "-" + value.substring(8, 10);
+
+                        if (value.length === 0) e.target.value = "";
+                        else e.target.value = result;
+                    });
+                });
+        </script>
     </body>
 </html>

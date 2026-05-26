@@ -1,7 +1,4 @@
-import re
-
 from django import forms
-from django.core.exceptions import ValidationError
 
 from .models import Booking, User
 
@@ -12,22 +9,11 @@ class RegisterForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ["username", "first_name", "last_name", "phone", "email", "password"]
-
-    def clean_username(self):
-        username = self.cleaned_data.get("username")
-        if not re.match(r"^[а-яА-ЯёЁ]{6,}$", username):
-            raise ValidationError(
-                "Логин должен состоять только из кириллицы и быть не менее 6 символов."
-            )
-        if User.objects.filter(username=username).exists():
-            raise ValidationError("Этот логин уже занят.")
-        return username
-
-    def clean_phone(self):
-        phone = self.cleaned_data.get("phone")
-        if not re.match(r"^\+7\(\d{3}\)-\d{3}-\d{2}-\d{2}$", phone):
-            raise ValidationError("Формат телефона должен быть +7(XXX)-XXX-XX-XX")
-        return phone
+        widgets = {
+            "phone": forms.TextInput(
+                attrs={"placeholder": "+7(XXX)-XXX-XX-XX", "class": "form-control"}
+            ),
+        }
 
     def save(self, commit=True):
         user = super().save(commit=False)

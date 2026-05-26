@@ -15,7 +15,9 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ["id", "user", "date", "time", "status", "guests"]
-    list_filter = ["status", "date"]
-    search_fields = ["user__username", "contact_phone"]
+    list_display = ["id", "user", "date", "time", "status", "guests", "contact_phone"]
+    list_filter = ["status", "date", "created_at"]
+    search_fields = ["user__username", "contact_phone", "user__first_name"]
     list_editable = ["status"]
+    list_per_page = 10
+    date_hierarchy = "date"
