@@ -1,89 +1,100 @@
-{% extends 'base.html' %} {% block content %} {% load static %}
-<section
-    class="text-center text-white shadow-lg d-flex align-items-center"
-    style="
-        min-height: 95vh;
-        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url({% static 'img/01_cozy_interior copy.webp' %})
-            center/cover no-repeat;
-    "
->
-    <div class="container py-5">
-        <h1 class="display-3 fw-bold mb-4">Я буду кушац</h1>
+{% extends 'base.html' %} {% load static %} {% block content %}
+<section class="hero-section">
+    <div class="container">
+        <h1 class="display-2 fw-bold">Я буду кушац</h1>
         <p class="lead mb-4">
-            Бронируйте столики онлайн за пару секунд в лучшем ресторане города
+            Премиальный отдых и изысканная кухня в вашем городе
         </p>
-        <a href="{% url 'create_booking' %}" class="btn btn-warning btn-lg px-5 shadow"
-            >Забронировать</a
+        <a
+            href="{% url 'create_booking' %}"
+            class="btn btn-warning btn-lg px-5 rounded-pill fw-bold"
+            >Забронировать столик</a
         >
     </div>
 </section>
 
 <section class="container py-5">
-    <h2 class="text-center mb-5">Наши преимущества</h2>
-    <div class="row text-center">
-        <div class="col-md-3 mb-4">
-            <div class="card h-100 border-0 shadow-sm p-4 rounded-5">
-                <h3 class="h5 text-info">Быстро</h3>
-                <p class="small text-muted">Бронирование за 1 минуту</p>
+    <h2 class="text-center mb-5 fw-bold">Почему выбирают нас</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 p-4 text-center">
+                <h3 class="h5 text-brand">Быстрое бронирование</h3>
+                <p class="text-muted">
+                    Всего несколько кликов, и ваш столик зарезервирован.
+                </p>
             </div>
         </div>
-        <div class="col-md-3 mb-4">
-            <div class="card h-100 border-0 shadow-sm p-4 rounded-5">
-                <h3 class="h5 text-info">Надёжно</h3>
-                <p class="small text-muted">Контроль администратором</p>
+        <div class="col-md-4">
+            <div class="card h-100 p-4 text-center">
+                <h3 class="h5 text-brand">Гарантия качества</h3>
+                <p class="text-muted">
+                    Каждая заявка проверяется администратором лично.
+                </p>
             </div>
         </div>
-        <div class="col-md-3 mb-4">
-            <div class="card h-100 border-0 shadow-sm p-4 rounded-5">
-                <h3 class="h5 text-info">Онлайн</h3>
-                <p class="small text-muted">Выбор даты и времени</p>
-            </div>
-        </div>
-        <div class="col-md-3 mb-4">
-            <div class="card h-100 border-0 shadow-sm p-4 rounded-5">
-                <h3 class="h5 text-info">Статус</h3>
-                <p class="small text-muted">Отслеживание и отзывы</p>
+        <div class="col-md-4">
+            <div class="card h-100 p-4 text-center">
+                <h3 class="h5 text-brand">Уютная атмосфера</h3>
+                <p class="text-muted">
+                    Идеальное место для свиданий и семейных ужинов.
+                </p>
             </div>
         </div>
     </div>
 </section>
 
 <section class="container py-5">
-    <h2 class="text-center mb-5">Наши блюда</h2>
-    <div id="dishCarousel" class="carousel slide shadow-lg rounded-5 overflow-hidden" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#dishCarousel" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#dishCarousel" data-bs-slide-to="1"></button>
-            <button type="button" data-bs-target="#dishCarousel" data-bs-slide-to="2"></button>
+    <div class="row align-items-center g-5">
+        <div class="col-md-6">
+            <img
+                src="{% static 'img/04_signature_steak copy.webp' %}"
+                class="img-fluid rounded-5 shadow gallery-img"
+                alt="Блюдо 1"
+            />
         </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="{% static 'img/04_signature_steak copy.webp' %}"
-                     class="d-block w-100"
-                     style="height: 400px; object-fit: cover;"
-                     alt="Слайд 1">
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 'img/06_hot_pizza.webp' %}"
-                     class="d-block w-100"
-                     style="height: 400px; object-fit: cover;"
-                     alt="Слайд 2">
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 'img/16_sushi_set.webp' %}"
-                     class="d-block w-100"
-                     style="height: 400px; object-fit: cover;"
-                     alt="Слайд 3">
-            </div>
+        <div class="col-md-6">
+            <h2 class="fw-bold text-brand mb-3">Авторская Кухня</h2>
+            <p class="text-muted lead">
+                Мы объединяем традиции и современность, создавая шедевры из
+                самых свежих локальных продуктов.
+            </p>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#dishCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#dishCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"</span>
-            <span class="visually-hidden">Next</span>
-        </button>
+    </div>
+</section>
+
+<section class="container py-5">
+    <div class="row align-items-center g-5 flex-md-row-reverse">
+        <div class="col-md-6">
+            <img
+                src="{% static 'img/06_hot_pizza.webp' %}"
+                class="img-fluid rounded-5 shadow gallery-img"
+                alt="Блюдо 2"
+            />
+        </div>
+        <div class="col-md-6">
+            <h2 class="fw-bold text-brand mb-3">Идеальный Сервис</h2>
+            <p class="text-muted lead">
+                Наши официанты предугадают каждое ваше желание, чтобы вечер
+                прошел безупречно.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="container py-5 text-center">
+    <h2 class="fw-bold text-brand mb-4">Ждем вас в гости</h2>
+    <img
+        src="{% static 'img/16_sushi_set.webp' %}"
+        class="img-fluid rounded-5 shadow gallery-img mb-4"
+        style="max-width: 600px"
+        alt="Блюдо 3"
+    />
+    <div class="mt-4">
+        <a
+            href="{% url 'create_booking' %}"
+            class="btn btn-brand btn-lg px-5 rounded-pill fw-bold"
+            >Забронировать сейчас</a
+        >
     </div>
 </section>
 {% endblock %}

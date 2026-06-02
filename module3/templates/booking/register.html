@@ -1,108 +1,30 @@
 {% extends 'base.html' %} {% block content %}
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card shadow-sm border-0 rounded-3">
-                <div class="card-body p-4">
-                    <h2 class="text-center mb-4">Регистрация</h2>
-                    <form method="post">
-                        {% csrf_token %}
-
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Логин</label>
-                            <input
-                                type="text"
-                                name="username"
-                                class="form-control"
-                                required
-                                placeholder="Только кириллица"
-                            />
-                            {% if form.username.errors %}
-                            <div class="text-danger small">
-                                {{ form.username.errors|striptags }}
-                            </div>
-                            {% endif %}
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Имя</label>
-                            <input
-                                type="text"
-                                name="first_name"
-                                class="form-control"
-                                required
-                            />
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Фамилия</label>
-                            <input
-                                type="text"
-                                name="last_name"
-                                class="form-control"
-                                required
-                            />
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label fw-bold"
-                                >Номер телефона</label
-                            >
-                            <input
-                                type="text"
-                                name="phone"
-                                class="form-control"
-                                required
-                                placeholder="+7(XXX)-XXX-XX-XX"
-                            />
-                            {% if form.phone.errors %}
-                            <div class="text-danger small">
-                                {{ form.phone.errors|striptags }}
-                            </div>
-                            {% endif %}
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Email</label>
-                            <input
-                                type="email"
-                                name="email"
-                                class="form-control"
-                                required
-                            />
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Пароль</label>
-                            <input
-                                type="password"
-                                name="password"
-                                class="form-control"
-                                required
-                                minlength="6"
-                            />
-                            {% if form.password.errors %}
-                            <div class="text-danger small">
-                                {{ form.password.errors|striptags }}
-                            </div>
-                            {% endif %}
-                        </div>
-
-                        <button
-                            type="submit"
-                            class="btn btn-warning w-100 fw-bold"
+        <div class="col-md-5">
+            <div class="card p-4 shadow">
+                <h2 class="text-center mb-4 fw-bold">Регистрация</h2>
+                <form method="post">
+                    {% csrf_token %} {% for field in form %}
+                    <div class="mb-3">
+                        <label class="form-label fw-bold"
+                            >{{ field.label }}</label
                         >
-                            Зарегистрироваться
-                        </button>
-                    </form>
-                    <div class="text-center mt-3">
-                        Уже есть аккаунт?
-                        <a
-                            class="text-secondary text-decoration-none"
-                            href="{% url 'login' %}"
-                            >Войти</a
-                        >
+                        {{ field }} {% if field.errors %}
+                        <div class="text-danger small">{{ field.errors }}</div>
+                        {% endif %}
                     </div>
+                    {% endfor %}
+                    <button
+                        type="submit"
+                        class="btn btn-brand w-100 fw-bold py-2"
+                    >
+                        Создать аккаунт
+                    </button>
+                </form>
+                <div class="text-center mt-3">
+                    Уже есть аккаунт?
+                    <a href="{% url 'login' %}" class="text-brand">Войти</a>
                 </div>
             </div>
         </div>

@@ -17,12 +17,8 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, "Регистрация прошла успешно!")
             return redirect("home")
-        else:
-            messages.error(
-                request, "Ошибка при регистрации. Проверьте введённые данные"
-            )
+        messages.error(request, "Ошибка регистрации. Проверьте данные.")
     else:
         form = RegisterForm()
     return render(request, "booking/register.html", {"form": form})
@@ -36,7 +32,7 @@ def create_booking(request):
             booking = form.save(commit=False)
             booking.user = request.user
             booking.save()
-            messages.success(request, "Заявка на бронирование отправлена!")
+            messages.success(request, "Заявка отправлена!")
             return redirect("my_bookings")
     else:
         form = BookingForm()
@@ -52,12 +48,8 @@ def my_bookings(request):
 @login_required
 def add_review(request, booking_id):
     booking = Booking.objects.get(id=booking_id, user=request.user)
-    if booking.status == "completed":
-        if request.method == "POST":
-            booking.review = request.POST.get("review")
-            booking.save()
-            messages.success(request, "Отзыв успешно добавлен!")
-            return redirect("my_bookings")
-    else:
-        messages.error(request, "Вы можете оставить отзыв только после посещения")
+    if booking.status == "visited" and request.method == "POST":
+        booking.review = request.POST.get("review")
+        booking.save()
+        messages.success(request, "Отзыв добавлен!")
     return redirect("my_bookings")
